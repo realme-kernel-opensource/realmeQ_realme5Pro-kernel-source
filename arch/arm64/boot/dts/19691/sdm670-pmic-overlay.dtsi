@@ -161,14 +161,14 @@
 			pinctrl-names = "chargerid_switch_active", "chargerid_switch_sleep", "chargerid_switch_default",
 
 
-							"chg_qupv3_se12_2uart_sleep", "chg_qupv3_se12_2uart_default";
+							"chg_qupv3_se12_2uart_sleep", "chg_qupv3_se12_2uart_default","shortc_active";
 			pinctrl-0 = <&chargerid_switch_active>;
 			pinctrl-1 = <&chargerid_switch_sleep>;
 			pinctrl-2 = <&chargerid_switch_default>;
 
 			pinctrl-3 = <&chg_qupv3_se12_2uart_sleep>;
 			pinctrl-4 = <&chg_qupv3_se12_2uart_default>;			
-
+			pinctrl-5 = <&shortc_active>;
          
 //#endif //VENDOR_EDIT
 		qcom,chgr@1000 {

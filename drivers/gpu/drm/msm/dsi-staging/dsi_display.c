@@ -6711,7 +6711,8 @@ int dsi_display_enable(struct dsi_display *display)
 {
 	int rc = 0;
 	struct dsi_display_mode *mode;
-
+	int blank;
+	struct msm_drm_notifier notifier_data;
 	if (!display || !display->panel) {
 		pr_err("Invalid params\n");
 		return -EINVAL;
@@ -6722,7 +6723,15 @@ int dsi_display_enable(struct dsi_display *display)
 		return -EINVAL;
 	}
 	SDE_EVT32(SDE_EVTLOG_FUNC_ENTRY);
-
+	
+	blank = MSM_DRM_BLANK_UNBLANK;
+	notifier_data.data = &blank;
+	notifier_data.id = 0;
+	msm_drm_notifier_call_chain(MSM_DRM_EARLY_EVENT_BLANK,
+					&notifier_data);
+	
+	msm_drm_notifier_call_chain(MSM_DRM_EVENT_BLANK,
+					&notifier_data);
 	/* Engine states and panel states are populated during splash
 	 * resource init and hence we return early
 	 */
